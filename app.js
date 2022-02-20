@@ -38,11 +38,17 @@ const channelSchema = mongoose.Schema({
 
 const Channel = mongoose.model("Channel", channelSchema);
 
+//create channel
+
 app.post("/create-channel", async (req, res) => {
-  console.log(req.body);
-  const channel_info = new Channel(req.body);
-  await channel_info.save();
-  res.send(channel_info);
+  try {
+    const channel_info = new Channel(req.body);
+    await channel_info.save();
+    res.send(channel_info);
+  } catch (error) {
+    console.log(error);
+    res.send(error.message);
+  }
 });
 
 //get channels
@@ -110,11 +116,26 @@ app.get("/get-videos", async (req, res) => {
   res.json(getVideos);
 });
 
-//get data using post id
+//get data of any one videocard
 
 app.post("/get-video-details", async (req, res) => {
   const videoDetails = await Video.find({ _id: req.body._id }).exec();
   res.send(videoDetails);
+});
+
+//update videos using postman
+
+app.post("/update-channel-id", async (req, res) => {
+  const channelId = await Video.findByIdAndUpdate(
+    { _id: req.body.video_id },
+    {
+      $set: {
+        channel_id: req.body.channel_id,
+      },
+    }
+  );
+  await channelId.save();
+  res.json(channelId);
 });
 
 app.listen(5000, (err) => {
