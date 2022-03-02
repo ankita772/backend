@@ -1,13 +1,22 @@
 const express = require("express");
 const app = express();
+require("./config/db");
 const cors = require("cors");
 app.use(cors());
-require("./config/db");
 app.use(express.json());
+
+//import database
+
 const channelRouter = require("./router/channelRouter");
 const videoRouter = require("./router/videoRouter");
+const userRouter = require("./router/userRouter");
+
+//use Database
+
 app.use(channelRouter);
 app.use(videoRouter);
+app.use(userRouter);
+
 app.use((err, req, res, next) => {
   res.status(500).json({
     message: err.message,

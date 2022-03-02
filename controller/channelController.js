@@ -1,3 +1,4 @@
+const { Mongoose } = require("mongoose");
 const Channel = require("../model/channel");
 
 const createChannel = async (req, res, next) => {
@@ -10,13 +11,12 @@ const createChannel = async (req, res, next) => {
   }
 };
 
-const getChannel = async (req, res, next) => {
+const getUniqueChannel = async (req, res, next) => {
   try {
-    const getChannels = await Channel.find({}).exec();
-    res.json(getChannels);
+    const channelDetail = await Channel.find({ _id: req.body.id }).exec();
+    res.send(channelDetail);
   } catch (error) {
     next(error);
   }
 };
-
-module.exports = { createChannel, getChannel };
+module.exports = { createChannel, getUniqueChannel };

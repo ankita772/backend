@@ -6,14 +6,10 @@ router.post("/add-videos", controller.addVideo);
 
 //get videos
 
-router.get("/get-videos", controller.getVideo);
+router.get("/get-all-videos", controller.getAllVideos);
 
 //get data of any one videocard
 
 router.post("/get-video-details", controller.videoDetails);
-
-//update videos using postman
-
-router.post("/update-channel-id", controller.updateChannel);
 
 module.exports = router;

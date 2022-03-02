@@ -15,6 +15,7 @@ const channelSchema = mongoose.Schema({
   subscriber: {
     type: Number,
     required: true,
+    default: 0,
   },
 });
 
