@@ -27,4 +27,34 @@ const videoDetails = async (req, res, next) => {
   }
 };
 
-module.exports = { addVideo, getAllVideos, videoDetails };
+const updateLike = async (req, res, next) => {
+  try {
+    const like = await Video.findByIdAndUpdate(
+      { _id: req.body.id },
+      { like: req.body.like + 1 }
+    ).exec();
+    res.send(like);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateDislike = async (req, res, next) => {
+  try {
+    const dislike = await Video.findByIdAndUpdate(
+      { _id: req.body.id },
+      { dislike: req.body.dislike + 1 }
+    ).exec();
+    res.send(dislike);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  addVideo,
+  getAllVideos,
+  videoDetails,
+  updateLike,
+  updateDislike,
+};
