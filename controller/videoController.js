@@ -11,7 +11,7 @@ const addVideo = async (req, res, next) => {
 
 const getAllVideos = async (req, res, next) => {
   try {
-    const Videos = await Video.find({}).exec();
+    const Videos = await Video.find({}).populate("channel_id").exec();
     res.json(Videos);
   } catch (error) {
     next(error);
@@ -20,7 +20,9 @@ const getAllVideos = async (req, res, next) => {
 
 const videoDetails = async (req, res, next) => {
   try {
-    const videoDetails = await Video.find({ _id: req.body.id }).exec();
+    const videoDetails = await Video.find({ _id: req.body.id })
+      .populate("channel_id")
+      .exec();
     res.send(videoDetails);
   } catch (error) {
     next(error);
