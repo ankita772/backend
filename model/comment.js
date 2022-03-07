@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 
 const commentSchema = mongoose.Schema({
-  profile_icon: {
-    type: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
-  username: {
+  message: {
     type: String,
     required: true,
   },
@@ -13,10 +14,6 @@ const commentSchema = mongoose.Schema({
     type: String,
     required: true,
     default: new Date(),
-  },
-  message: {
-    type: String,
-    required: true,
   },
 });
 

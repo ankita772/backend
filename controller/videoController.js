@@ -31,9 +31,10 @@ const videoDetails = async (req, res, next) => {
 
 const updateLike = async (req, res, next) => {
   try {
+    const likes = await Video.findById({ _id: req.body.id });
     const like = await Video.findByIdAndUpdate(
       { _id: req.body.id },
-      { like: req.body.like + 1 }
+      { like: likes.like + 1 }
     ).exec();
     res.send(like);
   } catch (error) {
