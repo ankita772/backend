@@ -1,4 +1,4 @@
-const generateAuthToken = require("../Config/utility");
+const generateAuthToken = require("../config/utility");
 const User = require("../model/user");
 
 const createUser = async (req, res, next) => {
@@ -19,6 +19,7 @@ const loginUser = async (req, res, next) => {
     console.log(user);
     if (user && user.password === password) {
       const token = generateAuthToken(user);
+      console.log(token);
       res.json({
         token: token,
         user: user,
