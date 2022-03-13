@@ -19,4 +19,4 @@ const getUniqueChannel = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = { createChannel, getUniqueChannel };
+module.exports = { createChannel };
