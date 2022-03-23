@@ -1,6 +1,7 @@
 const express = require("express");
 const router = new express.Router();
 const controller = require("../controller/videoController");
+const authorise = require("../middleware/verifyToken");
 
 //add video
 router.post("/add-videos", controller.addVideo);

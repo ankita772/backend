@@ -18,12 +18,12 @@ const loginUser = async (req, res, next) => {
     const user = await User.findOne({ email: email });
     if (user && user.password === password) {
       const token = generateAuthToken(user);
-      res.json({
+      res.status(200).json({
         token: token,
         user: user,
       });
     } else {
-      res.json({
+      res.status(400).json({
         message: "User does not exist",
       });
     }
