@@ -2,7 +2,8 @@ const Comment = require("../model/comment");
 
 const addComment = async (req, res, next) => {
   try {
-    const document = new Comment(req.body);
+    const { message } = req.body;
+    const document = new Comment(message);
     await document.save();
     res.send(document);
   } catch (err) {
