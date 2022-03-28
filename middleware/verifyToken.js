@@ -15,9 +15,7 @@ const authorise = async (req, res, next) => {
       try {
         let user = {};
         if (payload) {
-          user = await User.findById(payload._id)
-            .select("firstName lastName email phone")
-            .exec();
+          user = await User.findById(payload._id).exec();
         }
         req.user = user;
         next();
