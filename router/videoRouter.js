@@ -16,7 +16,7 @@ router.post("/get-video-details", controller.videoDetails);
 
 //update like
 
-router.post("/update-like", controller.updateLike);
+router.post("/update-like", authorise, controller.updateLike);
 
 //update dislike
 
