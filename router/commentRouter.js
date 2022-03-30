@@ -5,5 +5,5 @@ const authorise = require("../middleware/verifyToken");
 
 router.post("/add-comment", authorise, controller.addComment);
 
-router.post("/get-all-comment", controller.getAllComments);
+router.post("/get-all-comments", authorise, controller.getAllComments);
 module.exports = router;

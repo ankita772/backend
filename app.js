@@ -10,13 +10,13 @@ require("dotenv").config();
 const channelRouter = require("./router/channelRouter");
 const videoRouter = require("./router/videoRouter");
 const userRouter = require("./router/userRouter");
-
+const commentRouter = require("./router/commentRouter");
 //use Database
 
 app.use(channelRouter);
 app.use(videoRouter);
 app.use(userRouter);
-
+app.use(commentRouter);
 app.use((err, req, res, next) => {
   res.status(500).json({
     message: err.message,

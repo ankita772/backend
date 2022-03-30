@@ -1,9 +1,14 @@
 const mongoose = require("mongoose");
 
 const commentSchema = mongoose.Schema({
-  user: {
+  user_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+    required: true,
+  },
+  video_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Video",
     required: true,
   },
   message: {

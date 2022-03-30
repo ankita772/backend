@@ -22,4 +22,8 @@ router.post("/update-like", authorise, controller.updateLike);
 
 router.post("/update-dislike", controller.updateDislike);
 
+//update subscriber
+
+router.post("/update-subscriber", controller.updateSubscriber);
+
 module.exports = router;

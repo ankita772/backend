@@ -3,14 +3,14 @@ const jwt = require("jsonwebtoken");
 
 const authorise = async (req, res, next) => {
   try {
-    const { Authorization } = req.headers;
-    console.log(Authorization);
-    if (!Authorization) {
+    const { authorization } = req.headers;
+    console.log(authorization);
+    if (!authorization) {
       return res
         .status(401)
         .json({ status: 401, message: "The user not logged in" });
     }
-    const token = Authorization.replace("Bearer ", "");
+    const token = authorization.replace("Bearer ", "");
     jwt.verify(token, process.env.SECRET_KEY, async (err, payload) => {
       try {
         let user = {};

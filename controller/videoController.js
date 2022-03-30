@@ -44,9 +44,10 @@ const updateLike = async (req, res, next) => {
 
 const updateDislike = async (req, res, next) => {
   try {
+    const dislikes = await Video.findById({ _id: req.body.id });
     const dislike = await Video.findByIdAndUpdate(
       { _id: req.body.id },
-      { dislike: req.body.dislike + 1 }
+      { dislike: dislikes.dislike + 1 }
     ).exec();
     res.send(dislike);
   } catch (error) {
@@ -54,10 +55,23 @@ const updateDislike = async (req, res, next) => {
   }
 };
 
+const updateSubscriber = async (req, res, next) => {
+  try {
+    const subs = await Video.findById({ _id: req.body.id });
+    const subscriber = await Video.findByIdAndUpdate({
+      _id: req.body.id,
+      subscriber: subs.subscriber + 1,
+    }).exec();
+    res.send(subscriber);
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {
   addVideo,
   getAllVideos,
   videoDetails,
   updateLike,
   updateDislike,
+  updateSubscriber,
 };
