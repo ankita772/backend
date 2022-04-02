@@ -18,7 +18,9 @@ const addComment = async (req, res, next) => {
 const getAllComments = async (req, res, next) => {
   try {
     const { videoId } = req.body;
-    const data = await Comment.find({ video_id: videoId }).exec();
+    const data = await Comment.find({ video_id: videoId })
+      .populate("user_id")
+      .exec();
     res.json(data);
   } catch (err) {
     next(err);
