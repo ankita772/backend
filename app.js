@@ -25,6 +25,6 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.listen(5000, (err) => {
+app.listen(process.env.PORT, (err) => {
   console.log("server created sucessfully");
 });
